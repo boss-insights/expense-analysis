@@ -10,9 +10,11 @@ fetch(url, {
 
     let chargebeeCounter = 0;
     let recurlyCounter = 0;
+    let squareCounter = 0;
 
     let chargebeeAmountTotal = 0;
     let recurlyAmountTotal = 0;
+    let squareAmountTotal = 0;
 
 
     for (transaction of data) {
@@ -24,9 +26,13 @@ fetch(url, {
             recurlyCounter++;
             recurlyAmountTotal += parseInt(transaction["amount"]);
         }
+        if (transaction["integration"] == "square") {
+            squareCounter++;
+            squareAmountTotal += parseInt(transaction["amount"]);
+        }
     }
 
-    let savingsInsightAmount = Math.round((chargebeeAmountTotal + recurlyAmountTotal) * 0.04)/100;
+    let savingsInsightAmount = Math.round((chargebeeAmountTotal + recurlyAmountTotal + squareAmountTotal) * 0.04)/100;
 
     let savingsInsight = document.querySelector("#savingsInsight");
 
@@ -38,21 +44,36 @@ fetch(url, {
     console.log(recurlyAmountTotal);
 
     var amountOptions = {
-        series: [chargebeeAmountTotal, recurlyAmountTotal],
-        colors:['rgba(0,143,251,1)', 'rgba(0,227,150,1)'],
+        series: [chargebeeAmountTotal/100, recurlyAmountTotal/100, squareAmountTotal/100],
+        title: {
+            text: "Total Value of Transactions",
+            align: 'center',
+            margin: 10,
+            offsetX: 0,
+            offsetY: 0,
+            floating: false,
+            style: {
+              fontSize:  '18px',
+              fontWeight:  'bold',
+              fontFamily:  undefined,
+              color:  '#263238'
+            },
+        },        
+        colors:['rgba(0,143,251,1)', 'rgba(0,227,150,1)', '#E55137'],
         chart: {
-        width: 380,
+        width: 450,
         type: 'pie',
       },
-      labels: ['ChargeBee','Recurly'],
+      labels: ['ChargeBee','Recurly', 'Square'],
+      legend: {
+        position: 'bottom',
+        fontSize: '16px'
+      },
       responsive: [{
         breakpoint: 480,
         options: {
           chart: {
             width: 200
-          },
-          legend: {
-            position: 'bottom'
           }
         }
       }]
@@ -63,21 +84,36 @@ fetch(url, {
 
 
       var txnOptions = {
-        series: [chargebeeCounter, recurlyCounter],
-        colors:['rgba(0,143,251,1)', 'rgba(0,227,150,1)'],
+        series: [chargebeeCounter, recurlyCounter, squareCounter],
+        title: {
+            text: "Total Number of Transactions",
+            align: 'center',
+            margin: 10,
+            offsetX: 0,
+            offsetY: 0,
+            floating: false,
+            style: {
+              fontSize:  '18px',
+              fontWeight:  'bold',
+              fontFamily:  undefined,
+              color:  '#263238'
+            },
+        },     
+        colors:['rgba(0,143,251,1)', 'rgba(0,227,150,1)', '#E55137' ],
         chart: {
-        width: 380,
+        width: 450,
         type: 'pie',
       },
-      labels: ['ChargeBee','Recurly'],
+      labels: ['ChargeBee','Recurly', 'Square'],
+      legend: {
+        position: 'bottom',
+        fontSize: '16px'
+      },
       responsive: [{
         breakpoint: 480,
         options: {
           chart: {
             width: 200
-          },
-          legend: {
-            position: 'bottom'
           }
         }
       }]
@@ -85,6 +121,9 @@ fetch(url, {
 
       var numberOfTxnChart = new ApexCharts(document.querySelector("#numberOfTxnChart"), txnOptions);
       numberOfTxnChart.render();
+
+      let loadingSpinner = document.getElementsByClassName("lds-ellipsis");
+      loadingSpinner[0].remove();
         
     });
 
