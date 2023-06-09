@@ -23,12 +23,12 @@ $selfSigned = (bool)getenv('SELF_SIGNED_CERT');
 $client = new Client(['verify' => !$selfSigned, 'base_uri' => 'https://' . $_SESSION['account_domain']]);
 
 $page = 1;
-$invoices = [];
-if (isset($_GET['invoices'])) {
+$transactions = [];
+if (isset($_GET['transactions'])) {
 
     do {
     try {
-        $response = $client->request('GET', '/api/invoices?page=' . $page, [
+        $response = $client->request('GET', '/api/transactions?page=' . $page, [
         'auth' => ['admin', $_SESSION['password']],
         'headers' => [
             'User-Agent' => 'BossInsightsApiClient/1.0',
@@ -49,9 +49,9 @@ if (isset($_GET['invoices'])) {
         throw new Exception('invalid data api response');
         }
         $resultCount = count($result);
-        foreach ($result as $invoice) {
+        foreach ($result as $transaction) {
         // if ($invoice['balance'] > 0) {
-            $invoices[] = $invoice;
+            $transactions[] = $transaction;
         // }
         }
     } else {
@@ -61,7 +61,7 @@ if (isset($_GET['invoices'])) {
     $page++;
     } while ($resultCount > 0);
         header('Content-type: application/json');
-        echo json_encode($invoices);
+        echo json_encode($transactions);
 } else {
     header('Location: step4_insights.html');
 }
