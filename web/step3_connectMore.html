@@ -11,10 +11,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="./invoice.css" />
+    <link rel="stylesheet" type="text/css" href="./spinner.css" />
+    <script src="./step3.js" defer></script>
     <title>Document</title>
   </head>
   <body class="bg-light">
     <div class="container">
+      
       <main>
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="{{ BRAND_LOGO }}" alt="" height="64">
@@ -22,15 +25,16 @@
             <p class="lead">Using Commerce Data To Display Insights And Savings.</p>
         </div>
         <hr>
-    
-        <div class="d-flex justify-content-center row g-5 text-center">
+        <div class="lds-ellipsis"><div></div><div></div><div></div></div>
+        <div id="successContainer"></div>
+        <!-- <div id="successMessage" class="d-flex justify-content-center row g-5 text-center" hidden>
             <i class="d-flex justify-content-center align-items-center  checkmark">✓</i>
             <h2 class="text-success">SUCCESS!</h2>
-            <p class="fs-4 fw-normal text-center my-1">You've successfully connected to INTEGRATION</p>
+            <p id="integrationMessage" class="fs-4 fw-normal text-center my-1"></p>
             <p class="fs-4 fw-normal text-center my-1">Would you like to connect to another integration?</p>
-            <a href="step2_integration.html"><button type="button" class="btn btn-primary">Connect Another</button></a>
-            <a href="step4.php"><button type="button" class="btn btn-primary">I'm Done</button></a>
-        </div>
+            <a href="step2_integration.html"><button type="button" class="w-100 btn btn-primary btn-lg">Connect Another</button></a>
+            <a href="step4.php"><button type="button" class="w-100 btn btn-primary btn-lg">I'm Done</button></a>
+        </div> -->
       </main>
     </div>
   </body>
