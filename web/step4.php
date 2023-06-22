@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 require __DIR__ . '/../common.php';
 
 if (!isset($_SESSION['account_key'])) {
-  header('Location: step1.php');
+  header('Location: index.php');
   exit;
 }
 
@@ -40,8 +40,6 @@ if (isset($_GET['transactions'])) {
         throw new Exception($e->getMessage(), $e->getCode(), $e);
     }
 
-
-
     if ($response->getStatusCode() === 200) {
         $result = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
         if ($result === null) {
@@ -50,9 +48,7 @@ if (isset($_GET['transactions'])) {
         }
         $resultCount = count($result);
         foreach ($result as $transaction) {
-        // if ($invoice['balance'] > 0) {
             $transactions[] = $transaction;
-        // }
         }
     } else {
 

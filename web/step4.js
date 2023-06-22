@@ -5,9 +5,6 @@ fetch(url, {
 })
   .then(response => response.json())
   .then(data => {
-
-    console.log(data);
-
     let chargebeeCounter = 0;
     let recurlyCounter = 0;
     let squareCounter = 0;
@@ -15,7 +12,6 @@ fetch(url, {
     let chargebeeAmountTotal = 0;
     let recurlyAmountTotal = 0;
     let squareAmountTotal = 0;
-
 
     for (transaction of data) {
         if (transaction["integration"] == "chargebee") {
@@ -33,20 +29,14 @@ fetch(url, {
     }
 
     let savingsInsightAmount = Math.round((chargebeeAmountTotal + recurlyAmountTotal + squareAmountTotal) * 0.04)/100;
-
     let savingsInsight = document.querySelector("#savingsInsight");
 
     savingsInsight.innerHTML = `<h3>Savings Opportunity</h3><p>By consolidating your payments to us we can save you $${savingsInsightAmount} in monthly fees.`;
 
-    console.log(chargebeeCounter);
-    console.log(chargebeeAmountTotal);
-    console.log(recurlyCounter);
-    console.log(recurlyAmountTotal);
-
     var amountOptions = {
         series: [chargebeeAmountTotal/100, recurlyAmountTotal/100, squareAmountTotal/100],
         title: {
-            text: "Total Value of Transactions",
+            text: "Total Value of Transactions ($)",
             align: 'center',
             margin: 10,
             offsetX: 0,
@@ -81,7 +71,6 @@ fetch(url, {
 
       var amountTotalChart = new ApexCharts(document.querySelector("#amountTotalChart"), amountOptions);
       amountTotalChart.render();
-
 
       var txnOptions = {
         series: [chargebeeCounter, recurlyCounter, squareCounter],
@@ -121,7 +110,7 @@ fetch(url, {
 
       var numberOfTxnChart = new ApexCharts(document.querySelector("#numberOfTxnChart"), txnOptions);
       numberOfTxnChart.render();
-
+      
       let loadingSpinner = document.getElementsByClassName("lds-ellipsis");
       loadingSpinner[0].remove();
         
