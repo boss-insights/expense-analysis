@@ -17,19 +17,17 @@
        const srcLink = decodeURIComponent(getSessionCookie('ORG_URL')) + "/dock/link/2022-09-08/link.js";
       loadScript(srcLink)
       .then( data  => {
-          console.log("Script loaded successfully", data);
           const widget = new DockLink({
           container: document.getElementsByClassName('DockLink_AppList')[0],
           name: getSessionCookie('org_name'),
           brand: {accent:"#" + getSessionCookie("brand_colour")},
           domain: getSessionCookie('account_domain'),
-          cancel: getSessionCookie('site_url') + "/step1.php",
+          cancel: getSessionCookie('site_url') + "/index.php",
           redirect: getSessionCookie('site_url') + "/step3.php",
           platforms: ["commerce"],
           token: getSessionCookie('embed_token'),
         });
 
-        console.log(getSessionCookie('org_name'));
         widget.render();
       })
       .catch( err => {
@@ -53,19 +51,8 @@
             Using Commerce Data To Display Insights And Savings.
           </p>
         </div>
-        <div class="DockLink_AppList">
-          
-        </div>
-
+        <div class="DockLink_AppList"></div>
       </main>
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2021-2023 RealBusiness</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Privacy</a></li>
-          <li class="list-inline-item"><a href="#">Terms</a></li>
-          <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-      </footer>
     </div>
   </body>
 </html>
