@@ -29,7 +29,7 @@ try {
 } catch (Exception $e) {
 	throw new Exception($e->getMessage(), $e->getCode(), $e);
 }
-//var_dump(json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR));
+
 if ($response->getStatusCode() === 200) {
 	$result = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 	if ($result === null) {

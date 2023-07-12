@@ -10,31 +10,43 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="./invoice.css" />
-    <link rel="stylesheet" type="text/css" href="./spinner.css" />
-    <script src="./step3.js" defer></script>
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/invoice.css" />
+    <!-- Start Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <!-- End Fonts -->
+    <script src="./js/step3.js" defer></script>
+    <title>Expense Analysis</title>
   </head>
+  <div id="polygon">
+    <img src="/images/greyRectangle.svg" style="display:none"/>
+  </div>
   <body class="bg-light">
     <div class="container">
       
       <main>
-        <div class="py-5 text-center">
+        
+        <div class="py-4 text-center">
             <img class="d-block mx-auto mb-4" src="{{ BRAND_LOGO }}" alt="" height="64">
-            <h2>Expense Analysis - Connect More?</h2>
-            <p class="lead">Using Commerce Data To Display Insights And Savings.</p>
+            <h2 class="page-title">Expense Analysis</h2>
+          <!-- breadcrumb -->
+            <nav>
+              <ol class="cd-multi-steps text-top">
+                <li id="navText" class="visited"><a href="index.html">Sign-Up</a></li>
+                <li id="navText" class="current"><em>Connect</em></li>
+                <li id="navText"><em>Insights</em></li>
+              </ol>
+            </nav>
+          <!-- breadcrumb ends -->
         </div>
-        <hr>
-        <div class="lds-ellipsis"><div></div><div></div><div></div></div>
+
+        <div id="accountCard">
+          <div id="custom-loader"></div>
+        <div id="checkmarkContainer"></div>
         <div id="successContainer"></div>
-        <!-- <div id="successMessage" class="d-flex justify-content-center row g-5 text-center" hidden>
-            <i class="d-flex justify-content-center align-items-center  checkmark">✓</i>
-            <h2 class="text-success">SUCCESS!</h2>
-            <p id="integrationMessage" class="fs-4 fw-normal text-center my-1"></p>
-            <p class="fs-4 fw-normal text-center my-1">Would you like to connect to another integration?</p>
-            <a href="step2_integration.html"><button type="button" class="w-100 btn btn-primary btn-lg">Connect Another</button></a>
-            <a href="step4.php"><button type="button" class="w-100 btn btn-primary btn-lg">I'm Done</button></a>
-        </div> -->
+      </div>
       </main>
     </div>
   </body>

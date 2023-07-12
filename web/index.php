@@ -91,7 +91,7 @@ if ($_POST) {
 			], JSON_THROW_ON_ERROR)
 		]);
 	} catch (Exception $e) {
-		throw new Exception('failed to communicate with admin api to provision a customer account');
+		throw new Exception('failed to communicate with admin api to provision a customer account'.var_export($e, true));
 	}
 	$result = [];
 	if ($response->getStatusCode() === 200) {
