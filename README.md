@@ -1,7 +1,7 @@
 # Expense Analysis
 
 ## What This Application Does
-This is an example expense analysis application. A merchant is able to connect to multiple commerce integrations using Boss Insight's Link Connection Widget. This application is currently set up to support Chargebee, Recurly, and Square but can be set up to connect any commerce application listed. Next, the merchant is able to view insights and savings based on the integrations connected. Currently, the application features two charts displaying relevant data. 
+This is an example expense analysis application. A merchant is able to connect to multiple commerce integrations using Boss Insight's Link Connection Widget. This application can be set up to connect any commerce application listed and pull data from the Boss Insights API. Next, the merchant is able to view insights and savings based on the integrations connected. Currently, the application features two charts using the Apex Charts API to display relevant data. 
 
 > ⚠️ **Disclaimer**: This is an example application and not intended for production use as-is, it lacks code in areas such as logging and security and is provided as a bare-bones example of how to connect and fetch data from the Boss Insights API
 
@@ -14,6 +14,7 @@ This is an example expense analysis application. A merchant is able to connect t
 ![Flow chart of steps application performs](https://github.com/boss-insights/expense-analysis/blob/main/web/images/expense-analysis-flow.png)
 
 ### How the example app works (Detailed)
+This application involves 4 steps. Each step and its accompanying files will be labelled accordingly (i.e. index.html, index.php, index.js). 
 
 When you first access the application you should be presented with `Index` which is Step 1 and looks like the screenshot below:
 ![Example application screenshot showing step 1](https://github.com/boss-insights/expense-analysis/blob/main/web/images/expense-analysis.png "Step 1")
@@ -27,6 +28,8 @@ Step 2 will present the javascript widget to allow the merchant to select their 
 Step 3 will display an option to either connect more integrations or continue to view insights. `Connect More` will redirect to Step 2 while `Show Insights` will redirect to Step 4.
 
 Step 4 will present two donut charts. Chart 1: Provider by Value: Based on your connected application, X amount of money went through Y application. (ex. $2000 went through Stripe). Chart 2: Provider by Number: Based on your connected application X amount of transactions went through Y application (ex. 65% of transactions went through Chargebee). Any form of chart or insight can be displayed here. 
+
+The chart colours in Step 4 are set in `step4.js`. This application uses the Apex Charts API api to display charts. We have provided up to 10 base colours to display on the donut charts but this can customized to any amount or colour. Please refer to the [Apex Charts documentation](https://apexcharts.com/docs/colors/) for more details.
 
 
 ## Self Hosting
@@ -60,7 +63,6 @@ This command will start a local web server running on port 8080
 | ORG_NAME           | yes      | The name of your company that should be shown to users                                                           | Example Capital Corp                |
 | ORG_URL            | yes      | Your Boss Insights account url                                                                                   | https://example.myintranetapps.com  |
 | API_KEY            | yes      | API Key used to identify API requests for your account                                                           | APIPROJECT3                         |
-| API_SECRET         | yes      | API Secret used to authenticate requests for your account                                                        |                                     |
 | ADMIN_URL          | yes      | The URL to your admin app. This is region dependant and will vary depending on your data residency               | https://admin.myintranetapps.com    |
 | ACCOUNT_KEY        | yes      | Your Boss Insights account unique identifier                                                                     | 5ff363e48e2a82.98390839             |
 | BRAND_ACCENT_COLOR | no       | A HTML hexadecimal color code that will be used in the example app as a bold color for buttons and other accents | CA76F6                              |
