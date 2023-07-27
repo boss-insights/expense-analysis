@@ -1,5 +1,5 @@
 # Expense Analysis
-
+![Example application screenshot showing insights page](https://github.com/boss-insights/expense-analysis/blob/main/web/images/expense-analysis-insights.PNG "Insights")
 ## What This Application Does
 This is an example expense analysis application. A merchant is able to connect to multiple commerce integrations using Boss Insight's Link Connection Widget. This application can be set up to connect any commerce application listed and pull data from the Boss Insights API. Next, the merchant is able to view insights and savings based on the integrations connected. Currently, the application features two charts using the Apex Charts API to display relevant data. 
 
